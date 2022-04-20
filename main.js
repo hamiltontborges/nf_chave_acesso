@@ -1,4 +1,5 @@
 
+// variáveis dos elementos HTML
 const inputNumero = document.getElementById('input-number');
 const btnGenerate = document.getElementById('btn-generateKey');
 const outputDigit = document.getElementById('output-digit');
@@ -7,11 +8,17 @@ const spanInput = document.getElementById('span-error');
 const divOutput = document.getElementById('output-div');
 const clearForm = document.getElementById('delete-icon');
 
+// Evento do input para aceitar somente números no input
+inputNumero.addEventListener('input', () => {
+  inputNumero.value = inputNumero.value.replace(/[^0-9]/g,'');
+});
+
+// Evento do botão de gerar chave
 btnGenerate.addEventListener('click', event => {
   event.preventDefault();
   if(!verifyForm()) {
   divOutput.classList.remove('hidden');
-  const result = generateAccessKeyNfe(inputNumero.value);
+  const result = generateKeyNfe(inputNumero.value);
   outputDigit.innerText = result;
   outputNumber.innerText = inputNumero.value + result;
   } else {
@@ -19,12 +26,14 @@ btnGenerate.addEventListener('click', event => {
   }
 });
 
+// Evento do botão de limpar formulário
 clearForm.addEventListener('click', event => {
   event.preventDefault();
   divOutput.classList.add('hidden');
   inputNumero.value = '';
 })
 
+// Função para verificar se o formulário contém erro
 const verifyForm = () => {
   let temErro = false;
   if (inputNumero.value.length !== 43) {
@@ -39,8 +48,8 @@ const verifyForm = () => {
   return temErro;
 }
 
-const generateAccessKeyNfe = key => {
-
+// Função para gerar a chave
+const generateKeyNfe = key => {
   const pond = [...key].reverse().map((char, index) => {
     const weight = (index % 8) + 2;
     return weight * char;
