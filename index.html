@@ -20,7 +20,7 @@
         <form id="form-crypt">
             <div>
                 <label>Número de entrada:</label>
-                <input type="text" name="number" id="input-number" maxlength="43">
+                <input type="text" name="number" id="input-number" maxlength="43" oninput="this.value=this.value.replace(/[^0-9]/g,'');">
                 <span id="span-error" class="erro"></span>
             </div>
             <div class="div-button">
