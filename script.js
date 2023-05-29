@@ -112,7 +112,7 @@ function generateNFeTable() {
         <p class="hint">${tipo[nfe.tpEmis]}</p>`
         break;
       case "cDV":
-        descriptionCell.innerHTML = "Digito verificador";
+        descriptionCell.innerHTML = "Dígito verificador";
         break;
       default:
         descriptionCell.innerHTML = "";
